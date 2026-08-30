@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery - The NaCho Family</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero hero-small" style="background-image: url('images/home.jpg');">
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="gallery.html" class="active">Photo Gallery</a>
+    </nav>
+    <div class="hero-text">
+      <h1>Family Photo Gallery</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="gallery-viewer">
+      <img id="viewerImage" src="images/home.jpg" alt="Selected family photo" />
+    </section>
+
+    <section class="gallery-thumbs">
+      <img class="thumb active" src="images/home.jpg" data-full="images/home.jpg" alt="The NaCho family" />
+      <img class="thumb" src="images/gallery1.jpg" data-full="images/gallery1.jpg" alt="NaCho family photo 1" />
+      <img class="thumb" src="images/gallery2.jpg" data-full="images/gallery2.jpg" alt="NaCho family photo 2" />
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 The NaCho Family</p>
+  </footer>
+
+  <script src="gallery.js"></script>
+</body>
+</html>

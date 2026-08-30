@@ -1,22 +1,75 @@
 /* Basic page setup */
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #fdf6ec;
+  background-color: #f6f4ef;
   color: #333;
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
-header {
-  background-color: #e07a3f;
+/* Hero header with a family photo as the background */
+header.hero {
+  position: relative;
+  background-color: #2f4a3e;
+  background-size: cover;
+  background-position: center;
   color: white;
-  padding: 30px 20px;
+  padding: 60px 20px 50px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-header h1 {
+header.hero.hero-small {
+  min-height: 160px;
+  padding: 30px 20px 30px;
+}
+
+/* Dark tint over the photo so text stays readable no matter the image */
+header.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(20, 30, 25, 0.55), rgba(20, 30, 25, 0.75));
+}
+
+/* Nav bar sits above the tint */
+.site-nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.site-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 6px 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  border-bottom-color: #ffffff;
+}
+
+/* Title text over the photo */
+.hero-text {
+  position: relative;
+  z-index: 1;
+  margin-top: 30px;
+}
+
+.hero-text h1 {
   margin: 0;
-  font-size: 2em;
+  font-size: 2.2em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 main {
@@ -36,7 +89,7 @@ main {
   padding: 14px 28px;
   font-size: 1em;
   color: white;
-  background-color: #e07a3f;
+  background-color: #3d6b56;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -44,20 +97,20 @@ main {
 }
 
 #contactButton:hover {
-  background-color: #c9642c;
+  background-color: #2f5443;
 }
 
 /* Contact section near the bottom */
 .contact {
   margin-top: 50px;
   padding-top: 20px;
-  border-top: 2px solid #e07a3f;
+  border-top: 2px solid #3d6b56;
 }
 
 .contact .email {
   font-weight: bold;
   font-size: 1.1em;
-  color: #c9642c;
+  color: #2f5443;
 }
 
 footer {
@@ -65,4 +118,46 @@ footer {
   padding: 20px;
   font-size: 0.9em;
   color: #777;
+}
+
+/* ---------- Photo Gallery page ---------- */
+
+.gallery-viewer {
+  margin-bottom: 25px;
+}
+
+.gallery-viewer img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 10px;
+}
+
+.gallery-thumbs .thumb {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.75;
+  border: 3px solid transparent;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.gallery-thumbs .thumb:hover {
+  opacity: 1;
+}
+
+.gallery-thumbs .thumb.active {
+  opacity: 1;
+  border-color: #3d6b56;
 }
