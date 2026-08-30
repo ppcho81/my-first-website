@@ -1,0 +1,68 @@
+/* Basic page setup */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fdf6ec;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  background-color: #e07a3f;
+  color: white;
+  padding: 30px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+main {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.welcome p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+/* The main button */
+#contactButton {
+  margin-top: 20px;
+  padding: 14px 28px;
+  font-size: 1em;
+  color: white;
+  background-color: #e07a3f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#contactButton:hover {
+  background-color: #c9642c;
+}
+
+/* Contact section near the bottom */
+.contact {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 2px solid #e07a3f;
+}
+
+.contact .email {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #c9642c;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #777;
+}
