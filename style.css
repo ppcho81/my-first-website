@@ -225,3 +225,97 @@ main.game-page {
   cursor: pointer;
   touch-action: manipulation;
 }
+
+/* Named leaderboard, shown below the game */
+.leaderboard {
+  background-color: #eaf1ec;
+  border: 2px solid #3d6b56;
+  border-radius: 10px;
+  padding: 16px 24px 22px;
+  text-align: left;
+  margin-top: 25px;
+}
+
+.leaderboard h2 {
+  margin-top: 0;
+  color: #2f5443;
+}
+
+.leaderboard-list {
+  margin: 0;
+  padding-left: 26px;
+}
+
+.leaderboard-list li {
+  display: flex;
+  justify-content: space-between;
+  max-width: 320px;
+  padding: 4px 0;
+  font-size: 1.05em;
+}
+
+.leaderboard-list .lb-name {
+  font-weight: bold;
+  color: #2f5443;
+}
+
+.leaderboard-empty {
+  color: #666;
+  font-style: italic;
+  margin: 6px 0 0;
+}
+
+.score-form {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #b7ccbe;
+}
+
+.score-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #2f5443;
+}
+
+.score-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.score-form-row input[type="text"] {
+  flex: 1 1 180px;
+  padding: 10px 12px;
+  font-size: 1em;
+  border: 2px solid #3d6b56;
+  border-radius: 6px;
+}
+
+.score-form-row button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.score-form-row button[type="submit"] {
+  color: white;
+  background-color: #3d6b56;
+}
+
+.score-form-row button[type="submit"]:hover {
+  background-color: #2f5443;
+}
+
+.score-form-row .skip-button {
+  color: #3d6b56;
+  background-color: transparent;
+  border: 2px solid #3d6b56;
+}
+
+.score-form-row .skip-button:hover {
+  background-color: #3d6b56;
+  color: white;
+}

@@ -33,6 +33,21 @@
     <section class="game-wrap">
       <canvas id="gameCanvas" width="700" height="260"></canvas>
     </section>
+
+    <section class="leaderboard">
+      <h2>Top Scores</h2>
+      <ol id="leaderboardList" class="leaderboard-list"></ol>
+      <p id="leaderboardEmpty" class="leaderboard-empty">No scores yet &mdash; be the first!</p>
+
+      <form id="scoreForm" class="score-form" hidden>
+        <label for="playerName">🎉 New top score! Enter your name to save it:</label>
+        <div class="score-form-row">
+          <input type="text" id="playerName" maxlength="20" autocomplete="off" placeholder="Your name" />
+          <button type="submit">Save Score</button>
+          <button type="button" id="skipScoreButton" class="skip-button">Skip</button>
+        </div>
+      </form>
+    </section>
   </main>
 
   <footer>

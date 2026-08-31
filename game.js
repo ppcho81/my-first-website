@@ -21,10 +21,91 @@ let state = "ready";
 let frameCount = 0;
 let score = 0;
 let highScore = Number(localStorage.getItem(HIGH_SCORE_KEY)) || 0;
-let gameSpeed = 6;
+
+// Base speed and how fast it ramps up, both dialed back 10% from the
+// original pace so the game feels a little more relaxed.
+const START_SPEED = 5.4;
+const SPEED_INCREMENT = 0.45;
+
+let gameSpeed = START_SPEED;
 let groundOffset = 0;
 let obstacles = [];
 let nextObstacleAt = 0;
+
+// ---------- Leaderboard (named top scores, shown below the game) ----------
+const LEADERBOARD_KEY = "nachoRunLeaderboard";
+const MAX_LEADERBOARD_ENTRIES = 5;
+
+const leaderboardList = document.getElementById("leaderboardList");
+const leaderboardEmpty = document.getElementById("leaderboardEmpty");
+const scoreForm = document.getElementById("scoreForm");
+const playerNameInput = document.getElementById("playerName");
+const skipScoreButton = document.getElementById("skipScoreButton");
+
+let leaderboard = loadLeaderboard();
+let pendingScore = 0;
+let awaitingNameEntry = false;
+
+function loadLeaderboard() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(LEADERBOARD_KEY));
+    return Array.isArray(saved) ? saved : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveLeaderboard() {
+  localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(leaderboard));
+}
+
+function qualifiesForLeaderboard(candidateScore) {
+  if (leaderboard.length < MAX_LEADERBOARD_ENTRIES) return true;
+  return candidateScore > leaderboard[leaderboard.length - 1].score;
+}
+
+function renderLeaderboard() {
+  leaderboardList.innerHTML = "";
+  leaderboardEmpty.hidden = leaderboard.length > 0;
+
+  leaderboard.forEach(function (entry) {
+    const li = document.createElement("li");
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "lb-name";
+    nameSpan.textContent = entry.name;
+    const scoreSpan = document.createElement("span");
+    scoreSpan.className = "lb-score";
+    scoreSpan.textContent = entry.score;
+    li.appendChild(nameSpan);
+    li.appendChild(scoreSpan);
+    leaderboardList.appendChild(li);
+  });
+}
+
+scoreForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const name = playerNameInput.value.trim() || "Anonymous";
+
+  leaderboard.push({ name: name, score: pendingScore });
+  leaderboard.sort(function (a, b) {
+    return b.score - a.score;
+  });
+  leaderboard = leaderboard.slice(0, MAX_LEADERBOARD_ENTRIES);
+  saveLeaderboard();
+  renderLeaderboard();
+
+  scoreForm.hidden = true;
+  awaitingNameEntry = false;
+  playerNameInput.value = "";
+});
+
+skipScoreButton.addEventListener("click", function () {
+  scoreForm.hidden = true;
+  awaitingNameEntry = false;
+  playerNameInput.value = "";
+});
+
+renderLeaderboard();
 
 // The nacho (player) himself
 const nacho = {
@@ -42,7 +123,7 @@ const JUMP_STRENGTH = -13;
 // ---------- Setting up a new game ----------
 function resetGame() {
   score = 0;
-  gameSpeed = 6;
+  gameSpeed = START_SPEED;
   groundOffset = 0;
   obstacles = [];
   frameCount = 0;
@@ -50,6 +131,10 @@ function resetGame() {
   nacho.y = GROUND_Y - nacho.height;
   nacho.velocityY = 0;
   nacho.jumping = false;
+
+  // Starting a fresh run cancels any unsaved name-entry prompt
+  scoreForm.hidden = true;
+  awaitingNameEntry = false;
 }
 
 function randomBetween(min, max) {
@@ -72,12 +157,17 @@ function handleAction() {
   } else if (state === "running") {
     jump();
   } else if (state === "gameover") {
+    // Don't let a stray tap wipe out an unsaved qualifying score
+    if (awaitingNameEntry) return;
     resetGame();
     state = "running";
   }
 }
 
 window.addEventListener("keydown", function (e) {
+  // Don't hijack space/arrow keys while the player is typing their name
+  if (document.activeElement === playerNameInput) return;
+
   if (e.code === "Space" || e.code === "ArrowUp") {
     e.preventDefault();
     handleAction();
@@ -166,7 +256,7 @@ function update() {
   // Score climbs over time, and the game gently speeds up
   score += 1;
   if (score % 300 === 0) {
-    gameSpeed += 0.5;
+    gameSpeed += SPEED_INCREMENT;
   }
 }
 
@@ -176,6 +266,14 @@ function endGame() {
   if (finalScore > highScore) {
     highScore = finalScore;
     localStorage.setItem(HIGH_SCORE_KEY, String(highScore));
+  }
+
+  // If this run earned a spot on the named leaderboard, prompt for a name
+  if (finalScore > 0 && qualifiesForLeaderboard(finalScore)) {
+    pendingScore = finalScore;
+    awaitingNameEntry = true;
+    scoreForm.hidden = false;
+    playerNameInput.focus();
   }
 }
 
@@ -339,11 +437,16 @@ function loop() {
   if (state === "ready") {
     drawOverlayText(["Nacho Run", "Press SPACE or tap to start"]);
   } else if (state === "gameover") {
-    drawOverlayText([
+    const lines = [
       "Game Over!",
       "Score: " + Math.floor(score / 10) + "   High Score: " + highScore,
-      "Press SPACE or tap to play again",
-    ]);
+    ];
+    if (awaitingNameEntry) {
+      lines.push("🎉 Top score! Enter your name below to save it.");
+    } else {
+      lines.push("Press SPACE or tap to play again");
+    }
+    drawOverlayText(lines);
   }
 
   requestAnimationFrame(loop);
