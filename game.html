@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nacho Run - The NaCho Family</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero hero-small" style="background-image: url('images/home.jpg');">
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Photo Gallery</a>
+      <a href="game.html" class="active">Nacho Run</a>
+    </nav>
+    <div class="hero-text">
+      <h1>Nacho Run</h1>
+    </div>
+  </header>
+
+  <main class="game-page">
+    <section class="game-instructions">
+      <h2>How to Play</h2>
+      <ul>
+        <li>Press the <strong>SPACE BAR</strong> (or tap/click the game) to make Nacho jump.</li>
+        <li>Dodge the cars zooming in from the right &mdash; don't get hit!</li>
+        <li>The longer you survive, the faster it gets.</li>
+        <li>Try to beat your high score!</li>
+      </ul>
+    </section>
+
+    <section class="game-wrap">
+      <canvas id="gameCanvas" width="700" height="260"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 The NaCho Family</p>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
