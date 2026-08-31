@@ -131,3 +131,79 @@ filterButtons.forEach(function (button) {
 });
 
 renderCards();
+
+// ---------- "Add a Card" form ----------
+// This doesn't save anywhere by itself (the site has no database) --
+// it just builds the code for a new CARDS entry so it's easy to copy
+// into cards.js by hand.
+const addCardForm = document.getElementById("addCardForm");
+const addCardOutput = document.getElementById("addCardOutput");
+const cardCodeOutput = document.getElementById("cardCodeOutput");
+const copyCodeButton = document.getElementById("copyCodeButton");
+const copyStatus = document.getElementById("copyStatus");
+
+// Escape quotes/backslashes so the text drops safely into a JS string literal
+function escapeForCode(text) {
+  return text.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+}
+
+function buildCardSnippet(data) {
+  const favoritesCode = data.favorites.map(function (initial) {
+    return '"' + initial + '"';
+  }).join(", ");
+
+  return (
+    "  {\n" +
+    '    name: "' + escapeForCode(data.name) + '",\n' +
+    '    image: "images/cards/' + escapeForCode(data.image) + '",\n' +
+    '    era: "' + escapeForCode(data.era) + '",\n' +
+    '    region: "' + escapeForCode(data.region) + '",\n' +
+    '    rarity: "' + escapeForCode(data.rarity) + '",\n' +
+    '    set: "' + escapeForCode(data.set) + '",\n' +
+    '    details: "' + escapeForCode(data.details) + '",\n' +
+    "    favorites: [" + favoritesCode + "],\n" +
+    "  },"
+  );
+}
+
+if (addCardForm) {
+  addCardForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const favorites = Array.from(
+      addCardForm.querySelectorAll('input[name="favorite"]:checked')
+    ).map(function (checkbox) {
+      return checkbox.value;
+    });
+
+    const imageFilename = document.getElementById("cardImage").value.trim() || "placeholder.svg";
+
+    const snippet = buildCardSnippet({
+      name: document.getElementById("cardName").value.trim(),
+      image: imageFilename,
+      era: document.getElementById("cardEra").value.trim(),
+      region: document.getElementById("cardRegion").value.trim(),
+      rarity: document.getElementById("cardRarity").value.trim(),
+      set: document.getElementById("cardSet").value.trim(),
+      details: document.getElementById("cardDetails").value.trim(),
+      favorites: favorites,
+    });
+
+    cardCodeOutput.value = snippet;
+    addCardOutput.hidden = false;
+    copyStatus.textContent = "";
+    addCardOutput.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  copyCodeButton.addEventListener("click", function () {
+    cardCodeOutput.select();
+    navigator.clipboard
+      .writeText(cardCodeOutput.value)
+      .then(function () {
+        copyStatus.textContent = "Copied!";
+      })
+      .catch(function () {
+        copyStatus.textContent = "Couldn't auto-copy -- text is selected, press Ctrl+C.";
+      });
+  });
+}

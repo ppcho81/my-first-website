@@ -48,6 +48,78 @@
     <section class="cards-grid" id="cardsGrid">
       <!-- Card entries are generated from cards.js -->
     </section>
+
+    <section class="add-card">
+      <h2>Add a New Card</h2>
+      <p>
+        Fill this out and it'll generate the code for your card. It won't appear on the page by
+        itself &mdash; copy the code into <code>cards.js</code> yourself, or send it to whoever
+        maintains the site, to actually publish it.
+      </p>
+
+      <form id="addCardForm" class="add-card-form">
+        <div class="form-row">
+          <label for="cardName">Card Name</label>
+          <input type="text" id="cardName" placeholder="e.g., Charizard" required />
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="cardEra">Era</label>
+            <input type="text" id="cardEra" placeholder="e.g., Vintage (WOTC)" />
+          </div>
+          <div class="form-row">
+            <label for="cardRegion">Region</label>
+            <input type="text" id="cardRegion" placeholder="e.g., Kanto" />
+          </div>
+          <div class="form-row">
+            <label for="cardRarity">Rarity</label>
+            <input type="text" id="cardRarity" placeholder="e.g., Rare Holo" />
+          </div>
+          <div class="form-row">
+            <label for="cardSet">Set / Pack</label>
+            <input type="text" id="cardSet" placeholder="e.g., Base Set (1999)" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="cardDetails">Notes</label>
+          <textarea id="cardDetails" rows="3" placeholder="Why is this card special?"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="cardImage">Photo Filename</label>
+          <input type="text" id="cardImage" placeholder="charizard.jpg" />
+          <p class="form-hint">
+            Save your photo in the <code>images/cards</code> folder using this exact filename.
+            Leave blank to use a placeholder for now.
+          </p>
+        </div>
+
+        <fieldset class="form-row favorites-fieldset">
+          <legend>Favorite of</legend>
+          <label class="checkbox-label"><input type="checkbox" name="favorite" value="M" /> Micah</label>
+          <label class="checkbox-label"><input type="checkbox" name="favorite" value="Z" /> Zachariah</label>
+          <label class="checkbox-label"><input type="checkbox" name="favorite" value="H" /> Howie</label>
+        </fieldset>
+
+        <button type="submit" class="generate-button">Generate Card Code</button>
+      </form>
+
+      <div id="addCardOutput" class="add-card-output" hidden>
+        <h3>Your Card Code</h3>
+        <ol>
+          <li>Save your photo in <code>images/cards</code> as the filename you entered above.</li>
+          <li>Copy the code below and paste it into the <code>CARDS</code> list near the top of <code>cards.js</code>, right after the last entry.</li>
+          <li>Save the file &mdash; your new card will show up on this page!</li>
+        </ol>
+        <textarea id="cardCodeOutput" class="card-code-output" rows="11" readonly></textarea>
+        <div class="add-card-output-actions">
+          <button type="button" id="copyCodeButton" class="copy-button">Copy Code</button>
+          <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
