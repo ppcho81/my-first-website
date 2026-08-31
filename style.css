@@ -319,3 +319,200 @@ main.game-page {
   background-color: #3d6b56;
   color: white;
 }
+
+/* ---------- Favorite Pokemon Cards page ---------- */
+
+main.cards-page {
+  max-width: 960px;
+}
+
+.cards-note {
+  background-color: #eaf1ec;
+  border: 2px solid #3d6b56;
+  border-radius: 10px;
+  padding: 16px 24px;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.cards-note h2 {
+  margin-top: 0;
+  color: #2f5443;
+}
+
+.cards-note p {
+  line-height: 1.6;
+}
+
+.cards-note-todo {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.cards-note code {
+  background-color: #dbe6de;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+/* Small inline M / Z / H key shown in the intro text */
+.fav-key {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.fav-key-m {
+  background-color: #2980b9;
+}
+
+.fav-key-z {
+  background-color: #c0392b;
+}
+
+.fav-key-h {
+  background-color: #3d6b56;
+}
+
+.cards-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.cards-filter-label {
+  font-weight: bold;
+  color: #2f5443;
+  margin-right: 4px;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  font-size: 0.95em;
+  font-weight: bold;
+  color: #3d6b56;
+  background-color: transparent;
+  border: 2px solid #3d6b56;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: #dbe6de;
+}
+
+.filter-btn.active {
+  background-color: #3d6b56;
+  color: white;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px;
+  padding-bottom: 10px;
+}
+
+.card-item {
+  text-align: left;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+/* The [hidden] attribute needs to win over the display: flex above */
+.card-item[hidden] {
+  display: none;
+}
+
+.card-photo {
+  background-color: #eaf1ec;
+}
+
+.card-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 14px 16px 18px;
+}
+
+.card-info h3 {
+  margin: 0 0 10px;
+  color: #2f5443;
+}
+
+.card-details {
+  margin: 0 0 14px;
+}
+
+.card-details div {
+  display: flex;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: 0.92em;
+  border-bottom: 1px solid #eee;
+}
+
+.card-details dt {
+  flex: 0 0 90px;
+  font-weight: bold;
+  color: #555;
+}
+
+.card-details dd {
+  margin: 0;
+  color: #333;
+}
+
+.card-favorites {
+  display: flex;
+  gap: 8px;
+}
+
+.fav-badge {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #aaa;
+  background-color: #f1f1f1;
+  border: 2px solid #ddd;
+}
+
+.fav-badge.fav-m.active {
+  color: white;
+  background-color: #2980b9;
+  border-color: #2980b9;
+}
+
+.fav-badge.fav-z.active {
+  color: white;
+  background-color: #c0392b;
+  border-color: #c0392b;
+}
+
+.fav-badge.fav-h.active {
+  color: white;
+  background-color: #3d6b56;
+  border-color: #3d6b56;
+}

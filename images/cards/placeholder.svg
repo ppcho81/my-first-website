@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" role="img" aria-label="Photo coming soon">
+  <rect x="6" y="6" width="288" height="408" rx="16" fill="#f6f4ef" stroke="#3d6b56" stroke-width="4" stroke-dasharray="10 8" />
+  <circle cx="150" cy="170" r="54" fill="none" stroke="#3d6b56" stroke-width="6" />
+  <path d="M 96 170 A 54 54 0 0 1 204 170" fill="#3d6b56" />
+  <rect x="96" y="164" width="108" height="12" fill="#f6f4ef" />
+  <circle cx="150" cy="170" r="16" fill="#f6f4ef" stroke="#3d6b56" stroke-width="6" />
+  <text x="150" y="272" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="bold" fill="#2f5443">Photo Coming Soon</text>
+</svg>

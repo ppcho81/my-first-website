@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pok&eacute;mon Cards - The NaCho Family</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero hero-small" style="background-image: url('images/home.jpg');">
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Photo Gallery</a>
+      <a href="game.html">Nacho Run</a>
+      <a href="cards.html" class="active">Pok&eacute;mon Cards</a>
+    </nav>
+    <div class="hero-text">
+      <h1>Our Favorite Pok&eacute;mon Cards</h1>
+    </div>
+  </header>
+
+  <main class="cards-page">
+    <section class="cards-note">
+      <h2>About This Collection</h2>
+      <p>
+        These are the Pok&eacute;mon cards our family loves most. Each one shows its era, region,
+        rarity, and set, plus who in the family picked it as a favorite &mdash;
+        <strong class="fav-key fav-key-m">M</strong> for Micah,
+        <strong class="fav-key fav-key-z">Z</strong> for Zachariah, and
+        <strong class="fav-key fav-key-h">H</strong> for Howie. A card can be a favorite of more than one person!
+      </p>
+      <p class="cards-note-todo">
+        The 3 cards below are just examples showing how the page works. To add a real card,
+        take a photo, drop it in the <code>images/cards</code> folder, and add an entry for it in
+        <code>cards.js</code>.
+      </p>
+    </section>
+
+    <section class="cards-filter" aria-label="Filter by favorite">
+      <span class="cards-filter-label">Show favorites of:</span>
+      <button type="button" class="filter-btn active" data-filter="all">Everyone</button>
+      <button type="button" class="filter-btn" data-filter="M">Micah</button>
+      <button type="button" class="filter-btn" data-filter="Z">Zachariah</button>
+      <button type="button" class="filter-btn" data-filter="H">Howie</button>
+    </section>
+
+    <section class="cards-grid" id="cardsGrid">
+      <!-- Card entries are generated from cards.js -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 The NaCho Family</p>
+  </footer>
+
+  <script src="cards.js"></script>
+</body>
+</html>
