@@ -100,6 +100,27 @@ main {
   background-color: #2f5443;
 }
 
+/* Link to the Nacho Run game, styled to sit alongside the contact button */
+.play-link {
+  display: inline-block;
+  margin-top: 14px;
+  margin-left: 10px;
+  padding: 12px 26px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #3d6b56;
+  background-color: transparent;
+  border: 2px solid #3d6b56;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.play-link:hover {
+  background-color: #3d6b56;
+  color: white;
+}
+
 /* Contact section near the bottom */
 .contact {
   margin-top: 50px;
