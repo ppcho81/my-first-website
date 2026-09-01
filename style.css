@@ -48,6 +48,30 @@ header.hero.hero-fun::before {
   content: none;
 }
 
+/* Plain header: no photo, no color -- just the title on the page background */
+header.hero.hero-plain {
+  background-color: transparent;
+  background-image: none;
+  color: #2f4a3e;
+}
+
+header.hero.hero-plain::before {
+  content: none;
+}
+
+header.hero.hero-plain .site-nav a {
+  color: #2f4a3e;
+}
+
+header.hero.hero-plain .site-nav a:hover,
+header.hero.hero-plain .site-nav a.active {
+  border-bottom-color: #2f4a3e;
+}
+
+header.hero.hero-plain .hero-text h1 {
+  text-shadow: none;
+}
+
 /* Dark tint over the photo so text stays readable no matter the image */
 header.hero::before {
   content: "";
