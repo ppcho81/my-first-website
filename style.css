@@ -8,6 +8,18 @@ body {
   text-align: center;
 }
 
+/* Fun green & purple background for the homepage */
+body.home {
+  background-color: #f5f2fb;
+  background-image:
+    radial-gradient(circle at 8% 15%, rgba(61, 107, 86, 0.16) 0, transparent 20%),
+    radial-gradient(circle at 88% 10%, rgba(138, 95, 209, 0.18) 0, transparent 24%),
+    radial-gradient(circle at 15% 80%, rgba(138, 95, 209, 0.16) 0, transparent 22%),
+    radial-gradient(circle at 92% 78%, rgba(61, 107, 86, 0.18) 0, transparent 24%),
+    radial-gradient(circle at 50% 45%, rgba(138, 95, 209, 0.08) 0, transparent 30%);
+  background-attachment: fixed;
+}
+
 /* Hero header with a family photo as the background */
 header.hero {
   position: relative;
@@ -25,6 +37,15 @@ header.hero {
 header.hero.hero-small {
   min-height: 160px;
   padding: 30px 20px 30px;
+}
+
+/* Homepage header: fun green-to-purple gradient instead of a photo */
+header.hero.hero-fun {
+  background-image: linear-gradient(135deg, #3d6b56 0%, #6a4fa3 100%);
+}
+
+header.hero.hero-fun::before {
+  content: none;
 }
 
 /* Dark tint over the photo so text stays readable no matter the image */
